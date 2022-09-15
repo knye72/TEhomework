@@ -23,7 +23,14 @@ namespace TechElevator.Exercises.LogicalBranching
          * calculateShippingTotal(45) ➔ 23.75
          */
         public double CalculateShippingTotal(int weightInPounds)
-        {
+        {   if (weightInPounds <= 40)
+            {
+                return (weightInPounds * UpTo40PoundRate);
+            }
+            else if (weightInPounds > 40)
+            {
+                return ((40 * UpTo40PoundRate) + ((weightInPounds - 40)) * Over40PoundRate);
+            }
             return 0;
         }
 
@@ -40,7 +47,22 @@ namespace TechElevator.Exercises.LogicalBranching
          * calculateShippingTotal(45, true) ➔ 21.375
          */
         public double CalculateShippingTotal(int weightInPounds, bool hasDiscount)
-        {
+        {   if (weightInPounds <= 40 && hasDiscount == true)
+            {
+                return ((weightInPounds * UpTo40PoundRate) - ((weightInPounds * UpTo40PoundRate) * 0.1));
+            }
+            else if (weightInPounds <= 40 && hasDiscount == false)
+            {
+                return (weightInPounds * UpTo40PoundRate);
+            }
+            else if (weightInPounds > 40 && hasDiscount == true)
+            {
+                return ((40 * UpTo40PoundRate) + ((weightInPounds - 40)) * Over40PoundRate) - (((40 * UpTo40PoundRate) + ((weightInPounds - 40)) * Over40PoundRate) * 0.1);
+            }
+            else if (weightInPounds >40 && hasDiscount == false)
+            {
+                return ((40 * UpTo40PoundRate) + ((weightInPounds - 40)) * Over40PoundRate);
+            }
             return 0;
         }
 
@@ -55,8 +77,24 @@ namespace TechElevator.Exercises.LogicalBranching
          * calculateShippingTotal(45, 0.2) ➔ 19.0
          */
         public double CalculateShippingTotal(int weightInPounds, double discountPercentage)
-        {
-            return 0;
+        {   if (weightInPounds <= 40 && discountPercentage > 0)
+            {
+                return ((weightInPounds * UpTo40PoundRate) - ((weightInPounds * UpTo40PoundRate) * discountPercentage));
+            }
+            else if (weightInPounds <= 40 && discountPercentage == 0)
+            {
+                return (weightInPounds * UpTo40PoundRate);
+            }
+            else if (weightInPounds > 40 && discountPercentage > 0)
+            {
+                return ((40 * UpTo40PoundRate) + ((weightInPounds - 40)) * Over40PoundRate) - (((40 * UpTo40PoundRate) + ((weightInPounds - 40)) * Over40PoundRate) * discountPercentage);
+            }
+            else if (weightInPounds > 40 && discountPercentage == 0)
+            {
+                return ((40 * UpTo40PoundRate) + ((weightInPounds - 40)) * Over40PoundRate);
+            }
+            else return 0;
+         
         }
     }
 }

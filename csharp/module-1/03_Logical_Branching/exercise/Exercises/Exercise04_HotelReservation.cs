@@ -29,6 +29,14 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateStayTotal(int numberOfNights)
         {
+            if (numberOfNights >= MinimumNightsForDiscountRate)
+            {
+                return (DiscountRate * numberOfNights);
+            }
+            else if (numberOfNights < MinimumNightsForDiscountRate)
+            {
+                return (DailyRate * numberOfNights);
+            }
             return 0;
         }
 
@@ -48,6 +56,18 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateStayTotal(int numberOfNights, int numOfWeekendNights)
         {
+            if (numberOfNights >= MinimumNightsForDiscountRate && numOfWeekendNights > 0)
+            {
+                return ((numberOfNights * DiscountRate) + (numOfWeekendNights * 10));
+            }
+            else if (numberOfNights >= MinimumNightsForDiscountRate && numOfWeekendNights == 0)
+            {
+                return (numberOfNights * DiscountRate);
+            }
+            else if (numberOfNights < MinimumNightsForDiscountRate)
+            {
+                return (numberOfNights * DailyRate);
+            }
             return 0;
         }
 
@@ -70,7 +90,24 @@ namespace TechElevator.Exercises.LogicalBranching
         */
         public double CalculateStayTotal(int numberOfNights, int numOfWeekendNights, bool isRewardsMember)
         {
+            if (isRewardsMember == true)
+            {
+                return (numberOfNights * DiscountRate);
+            }
+            else if (numberOfNights >= MinimumNightsForDiscountRate && numOfWeekendNights > 0 && isRewardsMember == false)
+            {
+                return ((numberOfNights * DiscountRate) + (numOfWeekendNights * 10));
+            }
+            else if (numberOfNights >= MinimumNightsForDiscountRate && numOfWeekendNights == 0 && isRewardsMember == false)
+            {
+                return (numberOfNights * DiscountRate);
+            }
+            else if (numberOfNights < MinimumNightsForDiscountRate && isRewardsMember == false)
+            {
+                return (numberOfNights * DailyRate);
+            }
             return 0;
+
         }
     }
 }

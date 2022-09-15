@@ -26,8 +26,11 @@ namespace TechElevator.Exercises.LogicalBranching
          * acceptPackage(50) ➔ false
          */
         public bool AcceptPackage(int weightInPounds)
-        {
-            return false;
+        { if (weightInPounds <= MaxWeightPounds)
+            {
+                return true;
+            }
+            else return false;
         }
         
         /*
@@ -39,8 +42,11 @@ namespace TechElevator.Exercises.LogicalBranching
          * NOTE: You can calculate cubic inches by multiplying the length, width, and height.
          */
         public bool AcceptPackage(int weightInPounds, int lengthInInches, int widthInInches, int heightInInches)
-        {
-            return false;
+        {if (weightInPounds <= 40 && (lengthInInches * widthInInches * heightInInches <= 6912))
+            {
+                return true;
+            }
+            else return false;
         }
 
         /* 
@@ -62,8 +68,20 @@ namespace TechElevator.Exercises.LogicalBranching
          * acceptPackage(50, 4, 5, 10, true) ➔ false
          */
         public bool AcceptPackage(int weightInPounds, int lengthInInches, int widthInInches, int heightInInches, bool isSurchargePaid)
-        {
-            return false;
+        {if (weightInPounds <= 40 && (lengthInInches * widthInInches * heightInInches <= 6912) && (lengthInInches <= 66 && widthInInches <= 66 && heightInInches <= 66)){
+                return (true);
+            }
+            else if (weightInPounds <= 40 && (lengthInInches * widthInInches * heightInInches <= 6912) && (lengthInInches > 66 || widthInInches > 66 || heightInInches > 66) && (isSurchargePaid = true)){
+                return true;
+            }
+            else if (weightInPounds > 40) {
+                return false;
+            }
+            else if (lengthInInches * widthInInches * heightInInches <= 6912)
+            {
+                return false;
+            }
+                return false;
         }
     }
 }

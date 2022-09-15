@@ -29,7 +29,7 @@ namespace TechElevator.Exercises.LogicalBranching
             // value is false, but this code returns true.
             // Modify the following line to change ">=" to ">" and re-run the test. It will pass.
 
-            bool isAboveFreezing = highTemperatureF >= FreezingTemperatureF;
+            bool isAboveFreezing = highTemperatureF > FreezingTemperatureF;
 
             if (precipitationExpected && isAboveFreezing)
             {

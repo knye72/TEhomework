@@ -11,10 +11,10 @@
         {
             if (true)
             {
-                return false;
+                return true;
             }
 
-            return false;
+            return false; //unreachable code because true is true and we'll never reach the false option.
         }
     }
 }

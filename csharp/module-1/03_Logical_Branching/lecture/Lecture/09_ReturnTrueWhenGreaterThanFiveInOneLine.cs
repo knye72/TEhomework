@@ -8,7 +8,11 @@
         */
         public bool ReturnTrueWhenGreaterThanFiveInOneLine(int number)
         {
-            return false; // What can we put here that returns a bool that we want?
+
+            
+            //return true if number is greater than 5
+            return (number > 5); // What can we put here that returns a bool that we want? this evaluates the expression within the parentheses. 
+            //you can do it without the parentheses but it's ugly.
         }
     }
 }
