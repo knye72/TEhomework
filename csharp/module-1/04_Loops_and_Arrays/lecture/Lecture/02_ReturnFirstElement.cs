@@ -10,7 +10,8 @@
         {
             int[] portNumbers = { 80, 8080, 443 };
 
-            return 0;
+            int firstElement = portNumbers[0];
+            return firstElement;
         }
     }
 }
