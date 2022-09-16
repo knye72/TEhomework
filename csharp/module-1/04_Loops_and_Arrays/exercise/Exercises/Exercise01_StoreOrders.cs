@@ -49,7 +49,8 @@ namespace Exercises
 
         public int[] CreateOrder()
         {
-            return new int[] { };
+           
+            return new int[] {10, 40, 31, 41};
         }
 
         /*
@@ -65,7 +66,16 @@ namespace Exercises
         */
         public int GetCalzoneSales(int[] orders)
         {
-            return 0;
+            int calzones = 0;
+            for (int i = 0; i < orders.Length; i++)
+            {
+                int currentValue = orders[i];
+                if (currentValue == 40)
+                {
+                    calzones += 1;
+                }
+            }
+            return calzones;
         }
 
         /*
@@ -84,7 +94,25 @@ namespace Exercises
         */
         public int GetCheesePizzaRevenue(int[] orders)
         {
-            return 0;
+            int cheesePizzaMoney = 0;
+            for(int i = 0; i < orders.Length; i++)
+            {
+                int currentValue = orders[i];
+                if (currentValue == 10)
+                {
+                    cheesePizzaMoney += 8;
+                }
+                else if (currentValue == 20)
+                {
+                    cheesePizzaMoney += 11;
+                }
+                else if (currentValue == 30)
+                {
+                    cheesePizzaMoney += 14;
+                }
+                
+            }
+            return cheesePizzaMoney;
         }
     }
 }
