@@ -11,6 +11,10 @@
         */
         public string Left2(string str)
         {
+            string removedLetters = str.Substring(0, 2); // what needs to be done is to now add the remaining string AND the removed letters
+            string remainingString = str.Substring(2, str.Length -2);
+            return (remainingString + removedLetters);
+
             return null;
         }
     }

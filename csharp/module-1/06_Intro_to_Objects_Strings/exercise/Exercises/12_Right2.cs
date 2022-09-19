@@ -11,6 +11,9 @@
         */
         public string Right2(string str)
         {
+            string removedLetters = str.Substring(str.Length - 2, 2);
+            string lettersLeftover = str.Substring(0, str.Length - 2);
+            return removedLetters + lettersLeftover;
             return null;
         }
     }

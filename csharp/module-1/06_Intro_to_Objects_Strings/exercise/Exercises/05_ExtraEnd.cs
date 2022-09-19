@@ -11,7 +11,15 @@
         */
         public string ExtraEnd(string str)
         {
-            return null;
+            string lastTwo = str.Substring(str.Length - 2, 2);
+           // string repeater = lastTwo + lastTwo + lastTwo;
+
+          /*  if(str.Length < 2)
+            {
+                return null;
+            }
+           */ 
+            return (lastTwo + lastTwo + lastTwo);
         }
     }
 }

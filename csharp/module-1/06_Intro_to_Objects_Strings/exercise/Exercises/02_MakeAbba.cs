@@ -10,8 +10,13 @@
         MakeAbba("What", "Up") → "WhatUpUpWhat"
         */
         public string MakeAbba(string a, string b)
+            
         {
-            return null;
+           // string newString = string.Join(',',a,b,b,a);
+
+            
+            return(a + b + b + a) ;
         }
+        
     }
 }
