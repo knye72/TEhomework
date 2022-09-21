@@ -12,7 +12,7 @@
         public string NTwice(string str, int n)
         {
             string weirdNewString = str.Substring(0, n);
-            string secondNewString = str.Substring(str.Length - 1, str.Length - 1 - n);
+            string secondNewString = str.Substring(str.Length - n, n);
             
             return weirdNewString + secondNewString;
             return null;

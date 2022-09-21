@@ -20,7 +20,10 @@ namespace CommandLineProgramsTutorial
 
             Console.WriteLine("Going from " + kilometerStart + "km to " + kilometerEnd + "km in increments of " + incrementBy + "km.");
 
-            
+            for (int km = kilometerStart; km <= kilometerEnd; km += incrementBy) ;
+            {
+                double miles = km * 0.621371;
+            } 
         }
     }
 }

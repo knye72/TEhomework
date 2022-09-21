@@ -12,6 +12,21 @@
         */
         public string TwoChar(string str, int index)
         {
+           
+            if(index > str.Length -2)
+            {
+                return str.Substring(0, 2);
+            }
+            if(index >= 0)
+            {
+                string shortString = str.Substring(index, 2);
+                return shortString;
+            }
+            if(index < 0)
+            {
+                return str.Substring(0, 2);
+            }
+     
             return null;
         }
     }

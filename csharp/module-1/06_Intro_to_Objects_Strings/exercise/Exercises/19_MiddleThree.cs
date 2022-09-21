@@ -11,6 +11,8 @@
         */
         public string MiddleThree(string str)
         {
+            //string midThreeChars = str.Substring()
+            return str.Substring((str.Length / 2) - 1, 3);
             return null;
         }
     }

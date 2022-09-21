@@ -11,12 +11,9 @@
         */
         public string WithoutEnd(string str)
         {
-            if (str.Length >= 3)
-            {
-
-                return (str.Substring(1, str.Length ^ 1));
-            }
-            return null;
+            return (str.Substring(1, str.Length - 2));
+            
+            
         }
     }
 }

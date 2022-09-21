@@ -18,7 +18,30 @@ namespace Exercises
         */
         public List<string> FizzBuzzList(int[] integerArray)
         {
-            return null;
+            List<string> endingNumbers = new List<string>();
+
+            for (int i = 0; i < integerArray.Length; i++)
+            {
+                if (integerArray[i] % 5 != 0 && integerArray[i] % 3 != 0)
+                {
+                    endingNumbers.Add(integerArray[i].ToString());
+                }
+                if (integerArray[i] % 5 == 0 && integerArray[i] % 3 == 0)
+                {
+                    endingNumbers.Add("FizzBuzz"); //return a string of Fizzbuzz
+                    // break;
+                }
+                else if (integerArray[i] % 5 == 0)
+                {
+                    endingNumbers.Add("Buzz");// return a string of buzz;
+                }
+                
+                else if (integerArray[i] % 3 == 0)
+                {
+                    endingNumbers.Add("Fizz");// return a string of fizz
+                }
+            }
+            return endingNumbers ;
         }
     }
 }

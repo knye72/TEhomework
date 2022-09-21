@@ -10,6 +10,17 @@
         */
         public int CountXX(string str)
         {
+            int numberOfXx = 0;
+
+            for(int i = 0; i < str.Length -1; i++)
+            {
+                if((str[i] == 'x') && str[i + 1] =='x')
+                {
+                    numberOfXx++;
+                }
+            }
+            return numberOfXx;
+
             return 0;
         }
     }

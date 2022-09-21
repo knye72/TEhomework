@@ -11,6 +11,16 @@
         */
         public string StringX(string str)
         {
+            int numberOfX = 0;
+            for(int i = 1; i < str.Length -1; i++)
+            {
+                string lessX = str.Substring(1, str.Length - 1);
+                if(str[i] == 'x')
+                {
+                    return str.Replace('x', ' ');
+                }
+                
+            }
             return null;
         }
     }

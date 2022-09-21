@@ -11,6 +11,22 @@
         */
         public int Last2(string str)
         {
+            int numOfLastTwo = 0;
+            if ((str.Length - 2 > 0))
+            {
+
+
+                string lastTwo = str.Substring(str.Length - 2, 2);
+
+                for (int i = 0; i < str.Length - 2; i++)
+                {
+                    if ((str[i] == lastTwo[0] && str[i + 1] == lastTwo[1]))
+                    {
+                        numOfLastTwo++;
+                    }
+                }
+                return numOfLastTwo;
+            }
             return 0;
         }
     }

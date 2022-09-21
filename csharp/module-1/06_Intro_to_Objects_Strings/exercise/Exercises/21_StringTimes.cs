@@ -10,7 +10,12 @@
         */
         public string StringTimes(string str, int n)
         {
-            return null;
+            string extraTimes = "";
+            for(int i = 0; i < n; i++)
+            {
+                extraTimes += str;
+            }
+            return extraTimes;
         }
     }
 }

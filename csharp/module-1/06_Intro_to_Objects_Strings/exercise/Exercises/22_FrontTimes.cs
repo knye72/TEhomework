@@ -11,8 +11,26 @@
         */
         public string FrontTimes(string str, int n)
         {
-            return null;
-        }
+            string firstThree = str.Substring(0, 3);
+            string finalString = "";
+            if (str.Length < 3)
+            {
+                for(int i = 0; i < n; i++)
+                {
+                    finalString += str;
+                }
+                return finalString;
+            }
+                                   
+            for (int i = 0; i < n; i++)
+                {
+                    finalString = finalString + firstThree;
+                }
+
+                return finalString;
+
+            
+        }   
 
     }
 }

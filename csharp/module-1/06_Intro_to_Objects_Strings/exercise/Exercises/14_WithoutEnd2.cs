@@ -13,13 +13,9 @@
         {
             if (str.Length >= 3)
             {
-                return (str.Substring(1, str.Length - 1));
+                return str.Substring(1, str.Length - 2);
             }
-            if (str.Length <= 2)
-            {
-                return "";
-            }
-            return null;
+            return "";
         }
     }
 }
