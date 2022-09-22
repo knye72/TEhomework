@@ -15,7 +15,14 @@ namespace Exercises
          *
          */
         public Dictionary<string, int> RobPeterToPayPaul(Dictionary<string, int> peterPaul)
-        {
+        { //have to determine if pete has more than 0 && paul has < 1000. then take peter and divide by 2. make that a variable and add it to paul.
+            
+            if(peterPaul["Peter"] > 0 && peterPaul["Paul"] < 1000)
+            {
+                peterPaul["Peter"] /= 2;
+                peterPaul["Paul"] += peterPaul["Peter"];
+            }
+            return peterPaul;
             return null;
         }
     }

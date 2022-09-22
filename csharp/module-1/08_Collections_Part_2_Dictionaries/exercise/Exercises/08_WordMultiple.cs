@@ -15,6 +15,15 @@ namespace Exercises
          */
         public Dictionary<string, bool> WordMultiple(string[] words)
         {
+            Dictionary<string, bool> multiplesExist = new Dictionary<string, bool>();
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!multiplesExist.ContainsKey(words[i]))
+                {
+                    multiplesExist(words[i]) = false;
+                }
+            }
             return null;
         }
     }

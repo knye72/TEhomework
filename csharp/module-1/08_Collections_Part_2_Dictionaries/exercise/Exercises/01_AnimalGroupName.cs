@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Exercises
 {
@@ -34,6 +35,36 @@ namespace Exercises
          */
         public string AnimalGroupName(string animalName)
         {
+            Dictionary<string, string> animalCollective = new Dictionary<string, string>()
+            {
+                {"rhino", "Crash" },
+                {"giraffe", "Tower" },
+                {"elephant", "Herd" },
+                {"lion", "Pride" },
+                {"crow", "Murder" },
+                {"pigeon", "Kit" },
+                {"flamingo", "Pat" },
+                {"deer", "Herd" },
+                {"dog", "Pack" },
+                {"crocodile", "Float" }
+            };
+
+            if (animalName == null)
+            {
+                return "unknown";
+            }
+
+            string lowerCaseAnimal = animalName.ToLower();
+
+            if (animalCollective.ContainsKey(lowerCaseAnimal))
+            {
+                return animalCollective[lowerCaseAnimal];
+
+            }
+
+            else return "unknown";
+
+    
             return null;
         }
     }
