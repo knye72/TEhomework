@@ -21,7 +21,7 @@ namespace Exercises
             {
                 if (!multiplesExist.ContainsKey(words[i]))
                 {
-                    multiplesExist(words[i]) = false;
+                   // multiplesExist(words[i]) = false;
                 }
             }
             return null;

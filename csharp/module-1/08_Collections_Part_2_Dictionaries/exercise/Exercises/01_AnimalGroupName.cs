@@ -65,7 +65,7 @@ namespace Exercises
             else return "unknown";
 
     
-            return null;
+            //return null;
         }
     }
 }
