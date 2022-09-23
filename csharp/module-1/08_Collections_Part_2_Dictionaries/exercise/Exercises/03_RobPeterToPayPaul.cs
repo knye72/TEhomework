@@ -23,7 +23,7 @@ namespace Exercises
                 peterPaul["Paul"] += peterPaul["Peter"];
             }
             return peterPaul;
-            return null;
+            //return null;
         }
     }
 }
