@@ -16,15 +16,8 @@
             {
                 return false;
             }
-            if(str.Length == 3)
-            {
-                if (str.StartsWith("bad"))
-                {
-                    return true;
-                }
-      
-            }
-            if(str.Length > 3)
+          
+            if(str.Length >= 3)
             {
                 string newString = str.Substring(1, str.Length -1);
                 if (newString.StartsWith("bad") || str.StartsWith("bad")) 
