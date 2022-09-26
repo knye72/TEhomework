@@ -5,7 +5,7 @@
         /// <summary>
         /// The bidder name.
         /// </summary>
-        public string Bidder { get; }
+        public string Bidder { get; } //get without set means read-only. you can't change the bidder or the bid amount
 
         /// <summary>
         /// The bid amount.
