@@ -11,7 +11,7 @@
             {
                 return base.Withdraw(amountToWithdraw);
             }
-            if (Balance - amountToWithdraw <= 1)
+            if (Balance - amountToWithdraw < 2)
             {
                 return Balance;
             }
@@ -20,7 +20,7 @@
                 return base.Withdraw((amountToWithdraw) + 2);
             }
             else
-            return base.Withdraw(amountToWithdraw);
+                return base.Withdraw(amountToWithdraw);
         }
     }
 }
