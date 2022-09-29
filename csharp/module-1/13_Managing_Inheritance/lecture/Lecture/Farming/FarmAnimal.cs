@@ -3,7 +3,7 @@ namespace Lecture.Farming
     /// <summary>
     /// A base farm animal class.
     /// </summary>
-    public class FarmAnimal : ISingable
+    public abstract class FarmAnimal : ISingable
     {
         /// <summary>
         /// The farm animal's name.
@@ -12,12 +12,16 @@ namespace Lecture.Farming
 
         private string sound;
         /// <summary>
-        /// The farm animal's sound.
+        /// The farm animal's sound. Need to make sure the animal is awake first. 
         /// </summary>
-        public string Sound
+        public virtual string Sound
         {
             get
             {
+                if (IsAsleep)
+                {
+                    return "Zzz...";
+                }
                 return sound;
             }
             set
@@ -25,8 +29,9 @@ namespace Lecture.Farming
                 sound = value;
             }
         }
+        public bool IsAsleep { get; private set; }
 
-        /// <summary>
+                /// <summary>
         /// Creates a new farm animal.
         /// </summary>
         /// <param name="name">The name which the animal goes by.</param>
@@ -36,5 +41,15 @@ namespace Lecture.Farming
             Name = name;
             Sound = sound;
         }
+        // making the animal take a nap
+        public void Sleep(bool isAsleep)
+        {
+            IsAsleep = isAsleep;
+        }
+
+        //make the animal eat
+
+        public abstract string Eat(); // no logic for abstract methods. MUST be implemented in child classes. 
+        
     }
 }

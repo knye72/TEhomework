@@ -8,6 +8,10 @@ namespace Lecture.Farming
         {
         }
 
+        public override string Eat()
+        {
+            return "Yum yum, chicken feed!";
+        }
         public void LayEgg()
         {
             Console.WriteLine("Chicken laid an egg!");

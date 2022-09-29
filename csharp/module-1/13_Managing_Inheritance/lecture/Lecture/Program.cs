@@ -11,9 +11,27 @@ namespace Lecture
             // OLD MACDONALD
             //
 
+            Cow sirloin = new Cow();
+            Chicken frederick = new Chicken();
+            Pig bacon = new Pig();
+            Cat philco = new Cat();
+            Tractor internationalHarvester = new Tractor();
+
+            philco.Sleep(true); //puts Phil down for a nap
+            bacon.Sleep(true);
+
+            // FarmAnimal animal = new Cow(); you can't make a new instance of FarmAnimal but you can do a cow.
+            /*FarmAnimal[] farmAnimals = new FarmAnimal[] { sirloin, frederick, bacon };
+            Cow farmCow = new Cow(); //basically the same as below...for now. eg: there's no farmAnimal.Type for types of cow. 
+            FarmAnimal farmCowTwo = new Cow(); */
+
+            Console.WriteLine(philco.Eat());
+            Console.WriteLine(frederick.Eat());
+
             ISingable[] singables = new ISingable[]
             {
-                new Cow(), new Chicken(), new Pig(), new Tractor()
+                //new Cow(), new Chicken(), new Pig(), new Tractor()
+                sirloin, frederick, bacon, philco, internationalHarvester
             };
 
             foreach(ISingable singable in singables)
