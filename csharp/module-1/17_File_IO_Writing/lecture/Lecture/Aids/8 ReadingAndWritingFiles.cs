@@ -18,7 +18,7 @@ namespace Lecture.Aids
             using (StreamReader sr = new StreamReader(inputFullPath))
             {
                 // Open a StreamWriter where we will output the file
-                using (StreamWriter sw = new StreamWriter(outputFullPath, true))
+                using (StreamWriter sw = new StreamWriter(outputFullPath, true)) //appending even though the file doesn't exist yet. odd.
                 {
                     // For each line in the input file, read it in
                     while (!sr.EndOfStream)

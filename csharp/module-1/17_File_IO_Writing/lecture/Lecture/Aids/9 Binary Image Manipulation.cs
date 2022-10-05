@@ -12,10 +12,10 @@ namespace Lecture.Aids
             string filename = "rick.jpg";
             string fullpath = Path.Combine(folder, filename);
 
-            byte[] bytes = File.ReadAllBytes(fullpath);
-            using (MemoryStream ms = new MemoryStream(bytes))
+            byte[] bytes = File.ReadAllBytes(fullpath); //file data into a byte array.
+            using (MemoryStream ms = new MemoryStream(bytes)) //
             {
-                using (Image img = Image.FromStream(ms))
+                using (Image img = Image.FromStream(ms)) //creating an image from the memory stream. 
                 {
                     Bitmap bmp = new Bitmap(img);
                     for (int x = 0; x < bmp.Width; x++)

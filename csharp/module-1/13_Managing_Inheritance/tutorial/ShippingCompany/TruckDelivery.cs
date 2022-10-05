@@ -9,10 +9,8 @@ namespace ShippingCompany
         public const double TruckTopSpeed = 60.0;
         public override int GetDuration()
         {
-            double decimalHours = base.Distance / TruckTopSpeed;
-            int hours = (int)decimalHours;
-            int minutes = (int)Math.Round((decimalHours - hours) * 60);
-            return (hours * 60) + minutes;
+            double decimalHours = (double)base.Distance / TruckTopSpeed;
+            return ConvertHoursToMinutes(decimalHours);
         }
     }
 }

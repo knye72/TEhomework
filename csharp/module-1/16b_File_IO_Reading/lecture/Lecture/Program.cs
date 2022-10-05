@@ -6,9 +6,11 @@ namespace Lecture
     {
         static void Main(string[] args)
         {
+
+
             //ReadingInFiles.ReadACharacterFile();
             //ReadingCSVFiles.ReadFile();
-            //SummingUpNumbers.ReadFile();
+            SummingUpNumbers.ReadFile();
         }
     }
 }

@@ -24,7 +24,8 @@ namespace Lecture.Aids
             string filename = @"filename.txt";
 
             // Generating a full path from a folder and a file name
-            string fullPath = Path.Combine(path1, filename);
+            string fullPath = Path.Combine(path1, filename); // more complicated than concatenation. checks parameters, handles slashes, etc.
+
         }
 
 

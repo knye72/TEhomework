@@ -9,7 +9,7 @@ namespace Lecture.Aids
     * the file in question or a relative path based on where the program
     * is currently running to open the file in question.
     *
-    * We need to add a reference to System.IO
+    * We need to add a reference to System.IO, which has been done up top. -> sometimes I/O. 
     */
     public static class FileAndDirectories
     {

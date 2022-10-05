@@ -42,7 +42,7 @@ namespace Lecture.Aids
                         string[] words = line.Split(',');
 
                         // Add each word to allWords
-                        allWords.AddRange(words);
+                        allWords.AddRange(words); //add arrayvalues to a list
 
                     } //go to the next line until the end is reached
                 }

@@ -19,9 +19,12 @@ namespace Tutorial
             /*
             Step 2: Open a file for writing the converted text into it
             */
+            string convertedPath = getConvertedPath(filePath);
+
             try
             {
                 using (StreamReader fileInput = new StreamReader(filePath))
+                using (StreamWriter writer = new StreamWriter(convertedPath))
                 {
                     // Loop until the end of file is reached
                     while (!fileInput.EndOfStream)
@@ -31,7 +34,8 @@ namespace Tutorial
                         lineCount++;
 
                         // Write the text to the console.
-                        Console.WriteLine(lineOfText);
+                        //Console.WriteLine(lineOfText);
+                        writer.WriteLine(lineOfText.ToUpper());
                     }
                 }
             }
@@ -42,7 +46,10 @@ namespace Tutorial
             }
 
             // Tell the user what happened.
-            string message = $"Displayed {lineCount} lines of file {filePath}";
+            /*string message = $"Displayed {lineCount} lines of file {filePath}";
+            Console.WriteLine(message);*/
+            string message = $"Converted {lineCount} lines of file {filePath} " +
+                 $"to {convertedPath} on {DateTime.Now}";
             Console.WriteLine(message);
 
             /*
@@ -51,7 +58,20 @@ namespace Tutorial
             throughout history. If the file doesn't exist it will be created. If it already exists, its
             contents will be preserved, and the lines written here will be appended to what was already there.
              */
-            
+            string auditPath = "BookConverter.log";
+            // Using a StreamWriter with true passed into the constructor opens the file for append.
+            try
+            {
+                using (StreamWriter log = new StreamWriter(auditPath, true))
+                {
+                    log.WriteLine(message);
+                }
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("*** Problem writing log file: " + ex.Message);
+            }
+
         }
 
         /**

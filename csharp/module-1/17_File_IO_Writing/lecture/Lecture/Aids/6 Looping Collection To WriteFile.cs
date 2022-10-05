@@ -28,7 +28,7 @@ namespace Lecture.Aids
                 {"Ruby", 76.2 },
                 {"Matlab", 72.4 }
             };
-            string directory = Environment.CurrentDirectory;
+            string directory = Environment.CurrentDirectory; //this is where the current program is running, not where the files we see in VS live.
             string filename = "programminglanguages.txt";
             string path = Path.Combine(directory, filename);
 
