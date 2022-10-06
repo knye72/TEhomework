@@ -14,7 +14,7 @@ namespace WordSearch
             Console.WriteLine("Should the search be case sensitive? (Y/N)");
             string caseSensitive = Console.ReadLine();
 
-            if (caseSensitive.ToLower() == "n")
+            if (caseSensitive.ToUpper() == "N")
             {
                 wordToFind = wordToFind.ToLower();
                 try
@@ -26,6 +26,7 @@ namespace WordSearch
                         {
                             string line = reader.ReadLine();
                             string lineTwo = line.ToLower();
+                            //string lineTwo = line.ToLower();
                             lineNumber++;
                             if (lineTwo.Contains(wordToFind))
                             {
