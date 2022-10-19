@@ -5,33 +5,39 @@ using USCitiesAndParks.Models;
 
 namespace USCitiesAndParks.DAO
 {
-    public class CitySqlDao : ICityDao
+    public class CitySqlDao : ICityDao  //class plus interface. c# stuff.
     {
         private readonly string connectionString;
 
-        public CitySqlDao(string connString)
+        public CitySqlDao(string connString)  //CitySqlDao instantiated in program.cs, which is where the connection string comes from.
         {
             connectionString = connString;
         }
 
+        //method to retrieve city data from database.
         public City GetCity(int cityId)
         {
             City city = null;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString)) //'using' automatically closes connection when finished
+                //               name   new     connection  use this connection string (which is in program.cs)
             {
-                conn.Open();
+                conn.Open(); //opens connection to DB. 
                 SqlCommand cmd = new SqlCommand("SELECT city_id, city_name, state_abbreviation, population, area FROM city WHERE city_id = @city_id;", conn);
-                cmd.Parameters.AddWithValue("@city_id", cityId);
+                // builds a sql query, names it, and then we define it ^^ here. select columns from table where __ and then connect         ^placeholder/SQL parameter
 
-                SqlDataReader reader = cmd.ExecuteReader();
+                cmd.Parameters.AddWithValue("@city_id", cityId); //adds a value for the SQL parameter of @city_id in the query string above.
+                //^sql command. params. add a param. placeholder. actual value.
+                //alternately could've selected all from city in the original SqlCommand, but the point is getting a specific city.
 
-                if (reader.Read())
+                SqlDataReader reader = cmd.ExecuteReader(); //actually runs your query against the SQL database.
+
+                if (reader.Read()) //if we can read the result set (no errors, data rows exist)
                 {
-                    city = CreateCityFromReader(reader);
+                    city = CreateCityFromReader(reader); //create a city object from the results
                 }
             }
-            return city;
+            return city; //the city object
         }
 
         public IList<City> GetCitiesByState(string stateAbbreviation)
