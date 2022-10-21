@@ -36,12 +36,24 @@ namespace EmployeeProjects.DAO
 
         }
 
-        
 
-        public void UpdateDepartment(Department updatedDepartment)
+
+        public void UpdateDepartment(Department updatedDepartment) //name is the only parameter. 
+
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
 
+                SqlCommand cmd = new SqlCommand("UPDATE department SET name = @name WHERE department_id = @dept_id;", conn);
+                cmd.Parameters.AddWithValue("@name", updatedDepartment.Name);
+                cmd.Parameters.AddWithValue("@dept_id", updatedDepartment.DepartmentId);
+
+
+                cmd.ExecuteNonQuery();
+
+
+            }
         }
 
         private Department CreateDeptFromReader(SqlDataReader reader)
@@ -55,19 +67,13 @@ namespace EmployeeProjects.DAO
 
         public IList<Department> GetAllDepartments()
         {
-            throw new NotImplementedException();
-
-        }
-
-        public IList<Department> GetAllDepartments(int departmentId)
-        {
             IList<Department> departments = new List<Department>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM department WHERE department_id = @department_id", conn);
-                cmd.Parameters.AddWithValue("@department_id", departmentId);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM department", conn);
+                
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -77,7 +83,9 @@ namespace EmployeeProjects.DAO
                     departments.Add(department);
                 }
             }
-            return departments; 
+            return departments;
         }
+
+       
     }
 }
