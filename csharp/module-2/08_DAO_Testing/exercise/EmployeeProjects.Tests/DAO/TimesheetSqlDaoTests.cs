@@ -27,55 +27,93 @@ namespace EmployeeProjects.Tests.DAO
         [TestMethod]
         public void GetTimesheet_ReturnsCorrectTimesheetForId()
         {
-            Assert.Fail();
+            Timesheet timesheet = dao.GetTimesheet(1);
+            AssertTimesheetsMatch(TIMESHEET_1, timesheet);
         }
 
         [TestMethod]
         public void GetTimesheet_ReturnsNullWhenIdNotFound()
         {
-            Assert.Fail();
+            Timesheet timesheet = dao.GetTimesheet(99);
+            Assert.IsNull(timesheet);
         }
 
         [TestMethod]
-        public void GetTimesheetsByEmployeeId_ReturnsListOfAllTimesheetsForEmployee()
+        public void GetTimesheetsByEmployeeId_ReturnsListOfAllTimesheetsForEmployee() //1 of non-working 4. 
+
         {
-            Assert.Fail();
+            IList<Timesheet> timesheets = dao.GetTimesheetsByEmployeeId(1);
+            Assert.AreEqual(2, timesheets.Count);
+
         }
 
         [TestMethod]
-        public void GetTimesheetsByProjectId_ReturnsListOfAllTimesheetsForProject()
+        public void GetTimesheetsByProjectId_ReturnsListOfAllTimesheetsForProject() //2 of non-working 4.
         {
-            Assert.Fail();
+            IList<Timesheet> timesheets = dao.GetTimesheetsByProjectId(1);
+            Assert.AreEqual(3, timesheets.Count);
+            AssertTimesheetsMatch(TIMESHEET_1, timesheets[0]);
+            AssertTimesheetsMatch(TIMESHEET_2, timesheets[1]);
+            AssertTimesheetsMatch(TIMESHEET_3, timesheets[2]);
+
+            timesheets = dao.GetTimesheetsByProjectId(2);
+            Assert.AreEqual(1, timesheets.Count);
+
         }
 
         [TestMethod]
-        public void CreateTimesheet_ReturnsTimesheetWithIdAndExpectedValues()
+        public void CreateTimesheet_ReturnsTimesheetWithIdAndExpectedValues() 
         {
-            Assert.Fail();
+            Timesheet testTimesheet = new Timesheet(0, 2, 1, DateTime.Parse("2021-02-01"), 10, true, "Timesheet 5");
+            Timesheet newTimesheet = dao.CreateTimesheet(testTimesheet);
+
+            Assert.IsTrue(newTimesheet.TimesheetId > 0);
+
+            testTimesheet.TimesheetId = newTimesheet.TimesheetId;
+            AssertTimesheetsMatch(testTimesheet, newTimesheet);
         }
 
         [TestMethod]
         public void CreatedTimesheetHasExpectedValuesWhenRetrieved()
         {
-            Assert.Fail();
+            Timesheet testTimesheet = new Timesheet(5, 2, 1, DateTime.Parse("2021-02-01"), 10, true, "Timesheet 5");
+
+            Timesheet   timesheet = dao.CreateTimesheet(testTimesheet);
+            int newId = timesheet.TimesheetId;
+
+            Timesheet retrievedTimesheet = dao.GetTimesheet(newId);
+
+            AssertTimesheetsMatch(timesheet, retrievedTimesheet);
+            
         }
 
         [TestMethod]
-        public void UpdatedTimesheetHasExpectedValuesWhenRetrieved()
+        public void UpdatedTimesheetHasExpectedValuesWhenRetrieved() //3 of non-working 4.
         {
-            Assert.Fail();
+            Timesheet sheetToUpdate = dao.GetTimesheet(1);
+            sheetToUpdate.IsBillable = false;
+            dao.UpdateTimesheet(sheetToUpdate);
+
+            Timesheet newTimesheet = dao.GetTimesheet(1);
+            AssertTimesheetsMatch(sheetToUpdate, newTimesheet);
         }
 
         [TestMethod]
         public void DeletedTimesheetCantBeRetrieved()
         {
-            Assert.Fail();
+            dao.DeleteTimesheet(1);
+            Timesheet retrievedTimesheet = dao.GetTimesheet(1);
+
+            Assert.IsNull(retrievedTimesheet);
         }
 
         [TestMethod]
-        public void GetBillableHours_ReturnsCorrectTotal()
+        public void GetBillableHours_ReturnsCorrectTotal() //passes but only when you pass in the specific number
+                                                           //for first part of Assert.AreEqual.
+                                                           //4 of non-working 4.
         {
-            Assert.Fail();
+            decimal billableHours = dao.GetBillableHours(2, 2);
+            Assert.AreEqual(2.5M, billableHours);
         }
 
         private void AssertTimesheetsMatch(Timesheet expected, Timesheet actual)

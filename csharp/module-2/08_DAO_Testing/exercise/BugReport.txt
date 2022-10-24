@@ -1,34 +1,67 @@
 Bug 1
 -----
 Test that demonstrates problem:
+GetTimesheetsByEmployeeId_ReturnsListOfAllTimesheetsForEmployee
 
 Expected output:
+2
 
 Actual output:
+1
 
 How did you fix this bug?
+original code:
+if (reader.Read())
+                {
+                    Timesheet timesheet = CreateTimesheetFromReader(reader);
+                    timesheets.Add(timesheet);
+                }
+corrected code:
+while(reader.Read())  
+                {
+                    Timesheet timesheet = CreateTimesheetFromReader(reader);
+                    timesheets.Add(timesheet);
+                }
 
+
+confirmed that this works.
 
 Bug 2
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: GetTimesheets By ProjectID, return list of all timesheets for project
 
 Expected output:
-
+<3>
 Actual output:
+<2>
+How did you fix this bug? The code showed "WHERE employee_id = @project_id" and the former needed to change to "project_id"
 
-How did you fix this bug?
+original code: SqlCommand cmd = new SqlCommand("SELECT timesheet_id, employee_id, project_id, date_worked, hours_worked, is_billable, description " +
+                                                "FROM timesheet " +
+                                                "WHERE employee_id = @project_id " +
+                                                "ORDER BY timesheet_id;", conn);
+                cmd.Parameters.AddWithValue("@project_id", projectId);
 
+fixed code:
+
+SqlCommand cmd = new SqlCommand("SELECT timesheet_id, employee_id, project_id, date_worked, hours_worked, is_billable, description " +
+                                                "FROM timesheet " +
+                                                "WHERE project_id = @project_id " + 
+                                                "ORDER BY timesheet_id;", conn);
+                cmd.Parameters.AddWithValue("@project_id", projectId);
+
+confirmed to work.
 
 Bug 3
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: Get Billable hours
 
-Expected output:
+Expected output: True/test passes
 
-Actual output:
+Actual output: True/test passes, but not for everyone.
 
 How did you fix this bug?
+The test needs to take into account whether IsBillable = true or false before comparing the numbers. An if statement would solve this.
 
 
 Bug 4

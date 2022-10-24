@@ -6,7 +6,7 @@ using System.Transactions;
 
 namespace USCitiesAndParks.Tests
 {
-    [TestClass]
+    [TestClass] //seen this in unit testing.
     public class BaseDaoTests
     {
         private const string DatabaseName = "UnitedStatesTesting";
@@ -19,11 +19,12 @@ namespace USCitiesAndParks.Tests
         /// </summary>
         private TransactionScope transaction;
 
-        [AssemblyInitialize]
+        [AssemblyInitialize] // this will run before any of the tests in the project. hence the name BeforeAllTests
         public static void BeforeAllTests(TestContext context)
         {
-            string sql = File.ReadAllText("create-test-db.sql").Replace("test_db_name", DatabaseName);
+            string sql = File.ReadAllText("create-test-db.sql").Replace("test_db_name", DatabaseName); //get all the testing data from DB
 
+            //this is what's actually going to make the UnitedStatesTesting DB.
             using (SqlConnection conn = new SqlConnection(AdminConnectionString))
             {
                 conn.Open();
@@ -32,8 +33,9 @@ namespace USCitiesAndParks.Tests
                 cmd.ExecuteNonQuery();
             }
 
+            //load the test data into UnitedStatesTesting
             sql = File.ReadAllText("test-data.sql");
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString)) //standard connection string. 
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -41,10 +43,10 @@ namespace USCitiesAndParks.Tests
             }
         }
 
-        [AssemblyCleanup]
+        [AssemblyCleanup] //runs after all the tests have completed and things are being disposed of.
         public static void AfterAllTests()
         {
-            // drop the temporary database
+            // drop the temporary database, which is named UnitedStatesTesting.
             string sql = File.ReadAllText("drop-test-db.sql").Replace("test_db_name", DatabaseName);
 
             using (SqlConnection conn = new SqlConnection(AdminConnectionString))
@@ -56,7 +58,7 @@ namespace USCitiesAndParks.Tests
         }
 
 
-        [TestInitialize]
+        [TestInitialize] //runs before each test
         public virtual void Setup()
         {
             // Begin the transaction
@@ -64,7 +66,7 @@ namespace USCitiesAndParks.Tests
 
         }
 
-        [TestCleanup]
+        [TestCleanup] //runs after each test. 
         public void Cleanup()
         {
             // Roll back the transaction

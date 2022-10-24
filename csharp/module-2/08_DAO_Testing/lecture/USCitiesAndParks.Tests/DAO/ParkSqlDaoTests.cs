@@ -13,25 +13,28 @@ namespace USCitiesAndParks.Tests
         private static readonly Park PARK_2 = new Park(2, "Park 2", DateTime.Parse("1900-12-31"), 200, false);
         private static readonly Park PARK_3 = new Park(3, "Park 3", DateTime.Parse("2000-06-15"), 300, false);
 
-        private ParkSqlDao dao;
+        private ParkSqlDao dao; //declared up here. dao is the actual connection and we get a new parksqldao for each test. 
 
         [TestInitialize]
         public override void Setup()
         {
-            dao = new ParkSqlDao(ConnectionString);
-            base.Setup();
+            dao = new ParkSqlDao(ConnectionString); //getting a new DAO and new connection before every test. 
+            base.Setup(); //open a transaction before every test so that it rolls back at the end of the test. 
         }
 
         [TestMethod]
         public void GetPark_ReturnsCorrectParkForId()
         {
-            Assert.Fail();
+            //try getting park 2 from the test database
+            Park park = dao.GetPark(2); //this should get the park with id 2 from test db. 
+            AssertParksMatch(PARK_2, park); //compares and asserts that these two match. 
         }
 
         [TestMethod]
         public void GetPark_ReturnsNullWhenIdNotFound()
         {
-            Assert.Fail();
+            Park park = dao.GetPark(500); //doesn't exist, so it should come back null
+            Assert.IsNull(park);
         }
 
         [TestMethod]
@@ -49,7 +52,16 @@ namespace USCitiesAndParks.Tests
         [TestMethod]
         public void CreatePark_ReturnsParkWithIdAndExpectedValues()
         {
-            Assert.Fail();
+            Park testPark = new Park(0, "Test Park", DateTime.Now, 900, true); //0 as a park ID should get auto-incremented when it goes into the DB.
+            Park newParkFromDB = dao.CreatePark(testPark); //try to create testPark in the DB
+
+            //shouldn't be able to have a park ID of 0. 
+            Assert.IsTrue(newParkFromDB.ParkId > 0);
+
+            //check the rest of the values from the park that came out of the DB to see if they match testPark.
+            Assert.AreEqual(testPark.ParkName, newParkFromDB.ParkName); //could do a bunch of these or could do it differently below.
+            testPark.ParkId = newParkFromDB.ParkId; //set the id of test park to the new id
+            AssertParksMatch(testPark, newParkFromDB);
         }
 
         [TestMethod]
@@ -61,13 +73,24 @@ namespace USCitiesAndParks.Tests
         [TestMethod]
         public void UpdatedParkHasExpectedValuesWhenRetrieved()
         {
-            Assert.Fail();
+            Park parkToUpdate = dao.GetPark(2); //getting a park so we can update it.
+
+            parkToUpdate.HasCamping = true; 
+
+            dao.UpdatePark(parkToUpdate); //updates the park
+
+            Park retrievedPark = dao.GetPark(2); //get the park again now that it has (hopefully) updated
+
+            AssertParksMatch(parkToUpdate, retrievedPark); //do they match?
         }
 
         [TestMethod]
         public void DeletedParkCantBeRetrieved()
         {
-            Assert.Fail();
+            dao.DeletePark(3);
+
+            Park retrievedPark = dao.GetPark(3); //shouldn't work.
+            Assert.IsNull(retrievedPark); //should be null sincei t doens't exist anymore.
         }
 
         [TestMethod]

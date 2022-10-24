@@ -16,19 +16,22 @@ namespace USCitiesAndParks.Tests
 
         private CitySqlDao dao;
 
-        [TestInitialize]
+        [TestInitialize] //before each test, we have a Setup() step. instantiates a dao. connects to our fake db. make a new testCity.
+                         //then it calls base.setup, which if we look in BaseDaoTests, will begin the transaction.
         public override void Setup()
         {
+            //a lot of "arranging" happens here
             dao = new CitySqlDao(ConnectionString);
             testCity = new City(0, "Test City", "CC", 99, 999);
             base.Setup();
         }
 
         [TestMethod]
-        public void GetCity_ReturnsCorrectCityForId()
+        public void GetCity_ReturnsCorrectCityForId() //can we get the city based on the city id?
         {
-            City city = dao.GetCity(1);
-            AssertCitiesMatch(CITY_1, city);
+            //"Act" and "Assert" usually happen in the test methods.
+            City city = dao.GetCity(1); //go interact with the mock DB (UnitedStatesDatabase)
+            AssertCitiesMatch(CITY_1, city); //we have an assert method written for us to check the conversion to C# data as well.
 
             city = dao.GetCity(2);
             AssertCitiesMatch(CITY_2, city);
@@ -37,7 +40,7 @@ namespace USCitiesAndParks.Tests
         [TestMethod]
         public void GetCity_ReturnsNullWhenIdNotFound()
         {
-            City city = dao.GetCity(99);
+            City city = dao.GetCity(99); //there is no city 99 so this should be null. hence the IsNull below.
             Assert.IsNull(city);
         }
 
@@ -113,7 +116,10 @@ namespace USCitiesAndParks.Tests
             AssertCitiesMatch(CITY_1, cities[0]);
         }
 
-        private void AssertCitiesMatch(City expected, City actual)
+        private void AssertCitiesMatch(City expected, City actual) //why do we need an assert method? 
+                                                                    //same reason we take a row our ot SqlDataReader and turn it into a C# object 
+                                                                    //because they're different data types between c# and database. 
+                                                                    //the conversion still happens in DAO, but we're testing it here.
         {
             Assert.AreEqual(expected.CityId, actual.CityId);
             Assert.AreEqual(expected.CityName, actual.CityName);

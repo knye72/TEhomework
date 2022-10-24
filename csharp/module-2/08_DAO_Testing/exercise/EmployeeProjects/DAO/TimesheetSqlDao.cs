@@ -53,7 +53,7 @@ namespace EmployeeProjects.DAO
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                if (reader.Read())
+                if (reader.Read()) //not looping through everything and creating timesheets.  was an "if"
                 {
                     Timesheet timesheet = CreateTimesheetFromReader(reader);
                     timesheets.Add(timesheet);
@@ -73,7 +73,7 @@ namespace EmployeeProjects.DAO
 
                 SqlCommand cmd = new SqlCommand("SELECT timesheet_id, employee_id, project_id, date_worked, hours_worked, is_billable, description " +
                                                 "FROM timesheet " +
-                                                "WHERE employee_id = @project_id " +
+                                                "WHERE employee_id = @project_id " + //preventing these from being matched.
                                                 "ORDER BY timesheet_id;", conn);
                 cmd.Parameters.AddWithValue("@project_id", projectId);
 
