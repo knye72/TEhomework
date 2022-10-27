@@ -37,12 +37,13 @@ namespace HotelReservations.Controllers
             }
         }
 
-        [HttpGet("filter")]
-        public List<Hotel> FilterByStateOrCity(string state, string city)
+        [HttpGet("filter")] //http://localhost:5001/hotels/filter?state=something&city?=something
+        public List<Hotel> FilterByStateOrCity(string state, string city)//two parameters are keys for query params. 
         {
             List<Hotel> filteredHotels = new List<Hotel>();
 
-            List<Hotel> hotels = ListHotels();
+            List<Hotel> hotels = ListHotels(); //this is getting all the hotels.
+
             // return hotels that match state
             foreach (Hotel hotel in hotels)
             {
