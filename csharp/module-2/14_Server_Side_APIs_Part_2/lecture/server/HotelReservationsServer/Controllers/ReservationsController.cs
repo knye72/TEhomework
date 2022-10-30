@@ -9,7 +9,7 @@ namespace HotelReservations.Controllers
     [ApiController]
     public class ReservationsController : ControllerBase
     {
-        private IReservationDao reservationDao;
+        private IReservationDao reservationDao; //using the interface just allows you to get the version of the DAO that works in this system.
         private IHotelDao hotelDao;
         public ReservationsController(IHotelDao hotelDao, IReservationDao reservationDao)
         {
@@ -54,6 +54,27 @@ namespace HotelReservations.Controllers
         {
             Reservation added = reservationDao.Create(reservation);
             return Created($"/reservations/{added.Id}", added);
+        }
+
+        [HttpDelete("{id}")] //  /reservations/:id
+        public ActionResult DeleteReservation(int id) //send back an untyped ActionResult b/c you're not sending a reservation back.
+        {
+            Reservation existingReservation = reservationDao.Get(id);
+            if (existingReservation == null) //if it doesn't exist, it's a 404. can't delete what isn't there.
+            {
+                return NotFound();
+            }
+            bool result = reservationDao.Delete(id);
+
+            if (result) //if true and it was deleted
+            {
+                return NoContent(); //204 No Content. shows that it was a success but nothing is there.
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+
         }
     }
 }

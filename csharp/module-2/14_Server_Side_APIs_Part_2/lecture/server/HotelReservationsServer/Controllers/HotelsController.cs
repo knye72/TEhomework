@@ -11,7 +11,14 @@ namespace HotelReservations.Controllers
     {
         private IHotelDao hotelDao;
 
-        public HotelsController(IHotelDao hotelDao)
+        public HotelsController(IHotelDao hotelDao) //passing in the interface and not a class because it wants anything that fits to do this
+                                // if it fits the contract, run it.
+                                //we just want somethign that gives a list of hotels. don't care if it's from memory dao or api dao or sql dao
+                            //data isn't already in the controller, so we have to get the data from someplace. a dao, perhaps. 
+                        //the controller depends on having some sort of dao. 
+                        //don't care what fits in the hotelDAO box, but we want something. 
+                        //in the configuration/startup we've delcared a hotelmemorydao, but it's done this way because of back-end magic.
+                        //this is confusing but that's ok. 
         {
             this.hotelDao = hotelDao;
         }
