@@ -38,6 +38,14 @@ namespace HotelReservationsClient.Services
             }
             else if (!response.IsSuccessful)
             {
+
+                //if(response.statuscode == system.net.httpstatuscode.unauthorized) 
+                // {     message = $"authorization si required and the user hasn't logged in.";   }
+                // else if (responselstatuscode == system.net.httpscatuscode.forbidden) 
+                // {  message = $"the suer doesn't have permission.";   }
+
+                // else 
+                // {  message = $"an http error occurred.";
                 message = $"An http error occurred.";
                 messageDetails = $"Action: {action}\n" +
                     $"\tResponse: {(int)response.StatusCode} {response.StatusDescription}";

@@ -1,5 +1,6 @@
 ﻿using HotelReservations.DAO;
 using HotelReservations.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,6 +8,7 @@ namespace HotelReservations.Controllers
 {
     [Route("reservations")]
     [ApiController]
+    [Authorize]
     public class ReservationsController : ControllerBase
     {
         private IReservationDao reservationDao;
@@ -69,6 +71,7 @@ namespace HotelReservations.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "admin")] //bobby is the only "admin" user in users.txt so that's the only one who can delete reservations.
         [HttpDelete("{id}")]
         public ActionResult DeleteReservation(int id)
         {

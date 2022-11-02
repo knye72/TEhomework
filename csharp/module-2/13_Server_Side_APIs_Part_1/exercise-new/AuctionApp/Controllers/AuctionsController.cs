@@ -60,7 +60,7 @@ namespace AuctionApp.Controllers
 
         [HttpGet()]
 
-        public ActionResult<List<Auction>> GetAuctionsByTermAndPrice(string title_like = "", double currentBid_lte = 0)
+        public List<Auction> GetAuctionsByTermAndPrice(string title_like = "", double currentBid_lte = 0)
         {
 
             if(title_like != "" && currentBid_lte != 0)

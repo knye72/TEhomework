@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using HotelReservations.Models;
 using HotelReservations.DAO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelReservations.Controllers
 {
     [Route("hotels")]
     [ApiController]
+    [Authorize] //locks down the whole controller and requires a token. 
     public class HotelsController : ControllerBase
     {
         private IHotelDao hotelDao;
@@ -16,10 +18,12 @@ namespace HotelReservations.Controllers
             this.hotelDao = hotelDao;
         }
 
+        [AllowAnonymous] //overrides the authorize attribute up top so that thsi particular method/endpoint can be accessed by anyone. 
         [HttpGet()]
         public List<Hotel> ListHotels()
         {
             return hotelDao.List();
+            
         }
 
         [HttpGet("{id}")]
