@@ -1,0 +1,28 @@
+whiteboarding practice
+
+take a method that returns bool. named strictlyIncreasing. take in int [] as param. true if values are strictly incresing. false otherwise.
+
+
+// did this one wrong. it would just return true if the 2nd number was bigger than the 1st. 
+
+public bool strictlyIncreasing(int[] arrayName)
+int numberInQuestion = 0
+{ for(int i = 0; i < arrayName.length; i++)
+    if(arrayName[i] > numberInQuestion)
+    { numberInQuestion = arrayName[i]
+        return true;
+    }
+    else return false;
+
+
+create a method that returns an int[]. name it makeEnds. takes in an int[] called nums as a parameter. 
+nums will always be length of 1+. 
+return a new array of length 2, which contains the first and last element from nums. 
+
+public int[] makeEnds(int[] nums)
+{
+    int[2] results = int[2]
+    return results[] {nums[0], nums[^1]}
+}
+
+

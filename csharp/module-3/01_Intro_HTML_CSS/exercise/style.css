@@ -1,0 +1,16 @@
+body {
+    background-color: beige;
+}
+header {
+    text-align: center;
+}
+img {
+    max-width: 400px;
+}
+h2 {
+    text-decoration: underline;
+}
+
+blockquote {
+    font-style: italic;
+}
