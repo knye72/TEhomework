@@ -15,6 +15,11 @@ namespace DotnetMod1PracticeProblems
       */
         public List<string> No4LetterWords(string[] stringArray)
         {
+            List<string> list = new List<string>();
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                /*if(i)*/
+            }
             return new List<string>();
         }
 
@@ -26,7 +31,15 @@ namespace DotnetMod1PracticeProblems
       */
         public int FindLargest(List<int> integerList)
         {
-            return 0;
+            int largestNum = 0;
+            for(int i = 0; i < integerList.Count; i++)
+            {
+                if (i > largestNum) {
+                    largestNum = integerList[i];
+                }
+
+            }
+            return largestNum;
         }
 
         /*
@@ -37,7 +50,17 @@ namespace DotnetMod1PracticeProblems
         */
         public List<int> OddOnly(int[] integerArray)
         {
-            return new List<int>();
+            List<int> oddNumbers = new List<int>();
+            for (int i = 0; i < integerArray.Length; i++)
+            {
+                if (integerArray[i] % 2 == 1)
+                {
+                    oddNumbers.Add(integerArray[i]);
+                }
+                
+            }
+            
+            return oddNumbers;
         }
 
         /*
@@ -71,6 +94,7 @@ namespace DotnetMod1PracticeProblems
             foreach (string word in words)
             {
                 output[word.Substring(0, 1)] = word.Substring(word.Length - 1);
+
             }
 
             return output;

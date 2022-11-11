@@ -4,6 +4,10 @@ body {
 }
 
 header {
+  display: flex;
+}
+
+header {
   background-color: #F0F0F0;
   padding: 20px;
 }

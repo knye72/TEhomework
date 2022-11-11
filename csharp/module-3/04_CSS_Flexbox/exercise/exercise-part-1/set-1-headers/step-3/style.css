@@ -2,6 +2,19 @@ body {
   margin: 20px;
   padding: 0
 }
+ul {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+header {
+  display: flex;
+}
+
+nav {
+  display: flex;
+  justify-items: center;
+}
 
 header {
   background-color: #F0F0F0;

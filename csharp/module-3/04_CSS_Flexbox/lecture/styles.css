@@ -1,5 +1,41 @@
- 
+body {
+  display: flex;  /* turned this into a flexbox container */
+  flex-direction: column; /*turned the direction to column */
+  align-items: center;  /*center all the items */
+} 
 
+#hero footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#featured section {
+  display: flex;
+}
+
+#featured section article div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#all-items section article {
+  display: flex;
+  align-items: center;
+}
+
+/* :nth-child(even) gets all the even numbered child elements */
+/* :first-child to get the first child element inside ^^ */
+/* #all-items section article:nth-child(even) div:first-child 
+  order: 1; */
+
+#all-items section article:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+#all-items section article div:last-child {
+  flex-basis: 70%;
+}
 
 /***** enter flexbox CSS above this line *****/
 
@@ -118,5 +154,19 @@ section {
   #featured>header,
   #all-items>header {
     text-align: center;
+  }
+}
+
+/* media query 
+trying to get rid of the 3 columns on anything smaller than a laptop screen */
+@media screen and (max-width: 1024px) {
+  #featured section {
+    /* flex-direction: column; 
+    or */
+    flex-wrap: wrap;
+  }
+
+  #featured section article:nth-child(even) {
+    border: 0px;
   }
 }

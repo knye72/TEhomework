@@ -3,6 +3,12 @@ body {
   padding: 0
 }
 
+ul {
+  display: flex;
+  flex-direction: row;
+}
+
+
 header {
   background-color: #F0F0F0;
   padding: 20px;

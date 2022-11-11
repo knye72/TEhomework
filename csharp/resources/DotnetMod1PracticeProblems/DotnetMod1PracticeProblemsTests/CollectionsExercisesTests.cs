@@ -15,13 +15,13 @@ namespace Exercises
          List2Array( ["Red", "Orange", "Yellow"] )  ->  {"Red", "Orange", "Yellow"}
          List2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
          */
-        [TestMethod]
+        /*[TestMethod]
         public void Exercise02_List2Array()
         {
             CollectionAssert.AreEqual(new string[] { "Apple", "Orange", "Banana" }, exercises.List2Array(new List<string> { "Apple", "Orange", "Banana" }));
             CollectionAssert.AreEqual(new string[] { "Red", "Orange", "Yellow" }, exercises.List2Array(new List<string> { "Red", "Orange", "Yellow" }));
             CollectionAssert.AreEqual(new string[] { "Left", "Right", "Forward", "Back" }, exercises.List2Array(new List<string> { "Left", "Right", "Forward", "Back" }));
-        }
+        }*/
 
         /*
          Given an array of Strings, return a List containing the same Strings in the same order
