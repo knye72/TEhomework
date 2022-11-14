@@ -3,7 +3,25 @@ body {
   padding: 0
 }
 
+header > nav {
+  display: flex;
+}
+
+div.spacer {
+  display: flex;
+  flex-grow: 1;
+}
+
+ul {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: row;
+  align-content: center;
+ 
+}
+
 header {
+  display: flex;
   background-color: #F0F0F0;
   padding: 20px;
 }

@@ -5,8 +5,10 @@ body {
 }
 
 .container {
+  display: flex;
   background-color: #F0F0F0;
   height: 500px;
+  align-items:flex-end;
 }
 
 .box {
@@ -14,4 +16,5 @@ body {
   background-color: #00AFEF;
   color: #fff;
   border: solid 1px #777;
+  height: 100px;
 }

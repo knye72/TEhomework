@@ -5,11 +5,15 @@ body {
 }
 
 .container {
+  display: flex;
   background-color: #F0F0F0;
   height: 500px;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .box {
+  height: 75px;
   padding: 40px 55px;
   background-color: #00AFEF;
   color: #fff;

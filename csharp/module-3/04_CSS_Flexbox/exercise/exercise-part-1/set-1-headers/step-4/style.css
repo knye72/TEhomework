@@ -3,7 +3,23 @@ body {
   padding: 0
 }
 
+
+header > nav {
+  display: flex;
+  flex-grow: 2;
+}
+
+
+ul {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-end;
+}
+
 header {
+  display: flex;
   background-color: #F0F0F0;
   padding: 20px;
 }

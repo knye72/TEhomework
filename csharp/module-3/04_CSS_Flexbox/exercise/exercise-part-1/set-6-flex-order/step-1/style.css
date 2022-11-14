@@ -5,13 +5,19 @@ body {
 }
 
 .bio {
+  display: flex;
   background-color: #F0F0F0;
   padding: 20px;
   margin-bottom: 20px;
   border: solid 1px #555;
 }
 
+.bio:nth-child(2){
+  flex-direction: row-reverse;
+}
+
 .bio img {
+  display: flex;
   width: 150px;
   border-radius: 999px;
   margin: 0 10px;
