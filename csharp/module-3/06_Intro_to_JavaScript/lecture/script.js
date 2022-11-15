@@ -10,8 +10,16 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const daysPerWeek = 7;
+  console.log(`There are ${daysPerWeek} days in the week.`);
   // Declares a variable those value can be changed
+  let daysPerMonth = 30;
+  console.log(`There are ${daysPerMonth} days in a normal month.`)
   // Declares a variable that will always be an array
+  const daysOfTheWeek = [
+    "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday", "Sunday"
+  ];
+  console.table(daysOfTheWeek);
 }
 
 /**
@@ -19,6 +27,8 @@ function variables() {
  * Notice the parameters do not have types.
  * @param {Number} param1 The first number to display
  * @param {Number} param2 The second number to display
+ * 
+ * you can just kind of add in all kinds of things as parameters. 
  */
 function printParameters(param1, param2) {
   console.log(`The value of param1 is ${param1}`);
@@ -47,6 +57,7 @@ function equality(x, y) {
  * @param {Object} x The object to check for truthy or falsy,
  */
 function falsy(x) {
+  //we can say if (x) because x will inherently be truthy or falsy, whatever we pass in. no matter its value. 
   if (x) {
     console.log(`${x} is truthy`);
   } else {
@@ -74,10 +85,18 @@ function objects() {
   };
 
   // Log the object
-
+console.log(person);
+console.table(person);
   // Log the first and last name
-
+console.log(`${person.firstName} ${person.lastName}`)
   // Log each employee
+  for(let i = 0; i < person.employees.length; i++){
+    console.log(`Employee: ${person.employees[i]}`);
+  }
+
+for(const employee of person.employees) {
+  console.log(`For...of employee: ${employee}`)
+}
 }
 
 /*
@@ -128,6 +147,7 @@ function stringFunctions(value) {
   console.log(`.endsWith('World') - ${value.endsWith("World")}`);
   console.log(`.startsWith('Hello') - ${value.startsWith("Hello")}`);
   console.log(`.indexOf('Hello') - ${value.indexOf("Hello")}`);
+}
 
   /*
     Other Methods
@@ -138,4 +158,8 @@ function stringFunctions(value) {
         - trim()
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
     */
+function moreStrings(newStringName){
+  console.log(`.substr from 0 to 3 characters in length = ${newStringName.substr(0, 3)}`);
+  console.log(`substring = ${newStringName.substr(0,3)}`);
 }
+

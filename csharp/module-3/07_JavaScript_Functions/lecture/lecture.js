@@ -28,6 +28,10 @@ function printToConsole(value) {
  * @param {number} secondParameter the second parameter to multiply
  */
 
+function multiplyTogether(firstParameter, secondParameter){
+  return firstParameter * secondParameter;
+}
+
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -38,6 +42,10 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
+
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0){
+  return firstParameter * secondParameter;
+}
 
 
  
@@ -87,10 +95,20 @@ function scopeTest() {
   }
 }
 
+/**
+ * takes the details about a person and returns a nice string.
+ * 
+ * @param {string} name the name of the person we're going to describe 
+ * @param {number} age the age of the person we're going to describe
+ * @param {string[]} listOfQuirks a list of personality quirks
+ * @param {string} separator the string to separate the list of personality quirks
+ * @returns {string} a description of a person.
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
 }
+
 
 /**
  * Takes an array and, using the power of anonymous functions, generates
@@ -100,8 +118,18 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  //the reduce function has 2 params and it's smart enough to pass them to addTwoNumbers
+  //return numbersToSum.reduce(addTwoNumbers);
+
+  return numbersToSum.reduce((sum, nextNumber) => {  //copy/pasted teh params from addTwoNumbers
+    return sum + nextNumber;   //copy-pasted the function body from addTwoNumbers
+  })
 }
+
+function addTwoNumbers(sum, nextNumber){
+  return sum + nextNumber;
+}
+
 
 /**
  * Takes an array and returns a new array of only numbers that are
@@ -111,4 +139,30 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+
+function allDivisibleByThree(numbersToFilter) {
+  //return numbersToFilter.filter(isDivisibleByThree); //filter has 1 param and it's smart enough to send it to the other function
+      //other option
+
+  return numbersToFilter.filter((number) => {return (number % 3 === 0); });
+
+}
+
+
+function isDivisibleByThree(number) {
+  //return true or false
+  return number % 3 === 0;
+}
+
+
+// function concatenateABunchOfWords(firstWord, secondWord, thirdWord) {
+//   return firstWord + ' ' + secondWord + ' ' + thirdWord
+// }
+
+function concatenateABunchOfWords() {  //doing the above without params
+  let string = '';
+    for(let i = 0; i < arguments.length; i++){ //loop through the length of the arguments list
+      string += arguments[i] + ' ';    //arguments is a stand-in for the unnamed parameter list
+  }
+return string;
+}
