@@ -166,3 +166,21 @@ function concatenateABunchOfWords() {  //doing the above without params
   }
 return string;
 }
+
+
+
+
+
+
+
+
+function addAll(num) {
+  return num.reduce((sum, nextNumber) => {
+      return sum + nextNumber;
+  })
+}
+
+
+function addTwoNumbers(sum, nextNumber){
+  return sum + nextNumber;
+}
