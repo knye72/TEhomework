@@ -36,3 +36,14 @@ function displayGroceries() {
     ul.appendChild(li);
   });
 }
+
+
+setPageTitle();
+
+displayGroceries();
+
+allItemsIncomplete = false;
+const completed = document.querySelector('li');
+completed.addEventListener('click', (event) => {
+  completed.classList.toggle('completed');
+});

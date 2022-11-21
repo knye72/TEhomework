@@ -94,7 +94,7 @@
 */
 
 		function frontAgain(string) {
-			let firstTwo = string.substr(0,2);
+			let firstTwo = string.substr(0,2);						
 			let lastTwo = string.substr(string.length-2,2);
 			if(firstTwo == lastTwo){
 				return true;

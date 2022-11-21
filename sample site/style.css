@@ -1,0 +1,44 @@
+main {
+    display: grid;
+    grid-template-areas: 
+    "header header header"
+    "nav article navTwo"
+    "nav footer footer";
+    grid-template-rows: 80px 1fr 70px;
+    grid-template-columns: 15% 1fr 15%;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    height: 100vh;
+}
+
+#luca {
+    display: flex;
+    align-content: center;
+}
+
+#pageHeader {
+    grid-area: header;
+    text-align: center;
+}
+
+#pageHeader, #mainPoint, #list, #rightSide, footer {
+    background-color: darksalmon;
+}
+
+#mainPoint {
+    grid-area: article;
+}
+
+#list {
+    grid-area: nav;
+}
+
+#rightSide {
+    grid-area: navTwo;
+}
+
+#footer {
+    grid-area: footer;
+}
+
+

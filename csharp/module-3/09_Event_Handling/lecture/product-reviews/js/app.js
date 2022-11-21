@@ -66,12 +66,29 @@ setPageDescription();
 // Display all of the product reviews on our page.
 displayReviews();
 
+//STEP ONE: find the target of my event (i want to click on the description)
+const descriptionParagraph = document.querySelector('.description');
+//STEP TWO: register an event listener. 
+descriptionParagraph.addEventListener('click', toggleDescriptionEdit); //no extra () because we're referencing the function, not actually calling it.
+const inputDescription = document.getElementById('inputDesc');
+inputDescription.addEventListener('keyup', (event) => {
+  if(event.key === 'Enter'){ //everything after 'keyup' is the event handler now.
+  exitDescriptionEdit(event.target, true); //the event target is the thing you're interacting with.
+}
+  if(event.key === 'Escape') {
+    exitDescriptionEdit(event.target, false);
+  }
+
+});
+
+
 /**
  * Hide the description and show the text box.
  *
  * @param {Element} desc the element containing the description
  */
-function toggleDescriptionEdit(desc) {
+function toggleDescriptionEdit() {
+  const desc = document.querySelector('.description');
   const textBox = desc.nextElementSibling;
   textBox.value = desc.innerText;
   textBox.classList.remove('d-none');
@@ -94,6 +111,24 @@ function exitDescriptionEdit(textBox, save) {
   textBox.classList.add('d-none');
   desc.classList.remove('d-none');
 }
+
+//i want to show the hidden form when i click the 'add review' button
+const addReviewBtn = document.getElementById('btnToggleForm');
+// addReviewBtn.addEventListener('click', (event) => {
+//   showHideForm()
+// });
+//could also do it like this:
+addReviewBtn.addEventListener('click', showHideForm);  //this works because showHideForm doesn't have params.
+
+
+//make the 'save review' button work.
+const saveReviewButton = document.getElementById('btnSaveReview');
+saveReviewButton.addEventListener('click', 
+(event) => {
+  event.preventDefault(); //stop the default form submission behavior
+  saveReview()
+});
+
 
 /**
  * Toggle visibility of the add review form.
@@ -129,4 +164,20 @@ function resetFormValues() {
 /**
  * Save the review that was added using the add review form.
  */
-function saveReview() {}
+function saveReview() {
+  let name = document.getElementById('name');
+  let title = document.getElementById('title');
+  let rating = document.getElementById('rating');
+  let review = document.getElementById('review');
+
+const newReview = {
+  reviewer: name.value,
+  title: title.value,
+  review: review.value,
+  rating: rating.value
+}
+
+displayReview(newReview);
+
+
+}
