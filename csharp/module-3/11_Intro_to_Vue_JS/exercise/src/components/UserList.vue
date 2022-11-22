@@ -11,18 +11,26 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" id="firstNameFilter"/></td>
-        <td><input type="text" id="lastNameFilter"/></td>
-        <td><input type="text" id="usernameFilter"/></td>
-        <td><input type="text" id="emailFilter"/></td>
+        <td><input type="text" id="firstNameFilter" v-model="search.firstName" /></td>
+        <td><input type="text" id="lastNameFilter" v-model="search.lastName"/></td>
+        <td><input type="text" id="usernameFilter" v-model="search.username" /></td>
+        <td><input type="text" id="emailFilter" v-model="search.emailAddress" /></td>
         <td>
-          <select id="statusFilter">
+          <select id="statusFilter" v-model="search.status">
             <option value="">Show All</option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
           </select>
         </td>
       </tr>
+      <tr class="user" v-for="user in filteredList" v-bind:key="user.username">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.emailAddress}}</td>
+        <td>{{user.status}}</td>
+      </tr>
+      
       <!-- user listing goes here -->
     </tbody>
   </table>
@@ -40,10 +48,42 @@ export default {
         { firstName: 'Ben', lastName: 'Carter', username: 'bcarter', emailAddress: 'bcarter@gmail.com', status: 'Active' },
         { firstName: 'Katie', lastName: 'Jackson', username: 'kjackson', emailAddress: 'kjackson@yahoo.com', status: 'Active' },
         { firstName: 'Mark', lastName: 'Smith', username: 'msmith', emailAddress: 'msmith@foo.com', status: 'Inactive' }
-      ]
+      ],
+      search:{
+        firstName: '',
+        lastName: '',
+        username: '',
+        emailAddress: '',
+        status: ''
+      }
     }
+      
+  },
+  computed: {
+    filteredList() {
+      // if(users.firstName.toLowerCase().includes(this.search.firstName.toLowerCase()))
+        return this.users.filter((element) => {
+            const foundFirstName = element.firstName.toLowerCase().includes(this.search.firstName.toLowerCase());
+            const foundsecondName = element.lastName.toLowerCase().includes(this.search.lastName.toLowerCase());
+            const foundUserName = element.username.toLowerCase().includes(this.search.username.toLowerCase());
+            const foundemailAddress = element.emailAddress.toLowerCase().includes(this.search.emailAddress.toLowerCase());
+            let foundStatus = undefined; 
+              if(this.search.status != ''){
+                  foundStatus = element.status == this.search.status;
+              } 
+              else if(this.search.status == ''){
+                foundStatus = true;
+              }
+
+            return foundFirstName && foundsecondName && foundUserName && foundemailAddress && foundStatus;
+        })
+      }
+      
+    }
+    
   }
-}
+
+
 </script>
 
 <style scoped>
