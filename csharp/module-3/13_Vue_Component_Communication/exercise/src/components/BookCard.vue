@@ -1,16 +1,18 @@
 <template>
   <div class="card">
 
-    <!-- Please leave <img> commented out until directed to remove open and close comment tags in the README.
-    <img v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
-    -->
-    
+    <h2 class="book-title"> {{bookcard.title}} </h2>
+    <img v-if="bookcard.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + bookcard.isbn + '-M.jpg'" />
+    <p class="book-author"> {{bookcard.author}} </p>
+
+
   </div>
 </template>
 
 <script>
 export default {
-    name: 'book-card'
+    name: 'book-card',
+    props: ['bookcard']
 }
 </script>
 

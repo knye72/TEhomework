@@ -1,9 +1,9 @@
 main {
     display: grid;
     grid-template-areas: 
-    "header header header"
+    "nav header header"
     "nav article navTwo"
-    "nav footer footer";
+    "footer footer navTwo";
     grid-template-rows: 80px 1fr 70px;
     grid-template-columns: 15% 1fr 15%;
     grid-row-gap: 10px;

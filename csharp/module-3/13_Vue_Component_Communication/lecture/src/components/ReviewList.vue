@@ -5,6 +5,7 @@
       v-bind:key="review.title"
       v-bind:review="review"
     />
+    <!-- v-bind:review to pass the review object as props to review-display -->
   </div>
 </template>
 
@@ -18,10 +19,10 @@ export default {
   },
   computed: {
     filteredReviews() {
-      const reviewsFilter = -1;
-      const reviews = [];
+      const reviewsFilter = this.$store.state.filter;
+      const reviews = this.$store.state.reviews;
       return reviews.filter(review => {
-        return reviewsFilter === 0 ? true : reviewsFilter === review.rating;
+        return reviewsFilter === 0 ? true : reviewsFilter == review.rating;
       });
     }
   }
