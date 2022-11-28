@@ -44,7 +44,7 @@
           v-bind:class="{ disabled: user.status === 'Disabled' }"
         >
           <td>
-            <input type="checkbox" v-bind:id="user.id" v-bind:value="user.id" v-model="newUser.id"/>
+            <input type="checkbox" v-bind:id="user.id" v-bind:value="user.id" v-model="newUser.id" v-on:change="addUserID(user.id, $event)"/>
           </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
@@ -59,9 +59,9 @@
     </table>
 
     <div class="all-actions">
-      <button>Enable Users</button>
-      <button>Disable Users</button>
-      <button>Delete Users</button>
+      <button v-bind:disabled="actionButtonDisabled">Enable Users</button>
+      <button v-bind:disabled="actionButtonDisabled">Disable Users</button>
+      <button v-bind:disabled="actionButtonDisabled">Delete Users</button>
     </div>
 
     <button v-on:click="showForm = !showForm" >Add New User</button>
@@ -190,6 +190,18 @@ export default {
         }
       })
       
+    },
+    addUserID(id, event)
+    {
+      if(event.target.checked == true) {
+        this.selectedUserIDs.unshift(id);
+      }
+      else {
+        let deleteUser = this.selectedUserIDs.indexOf(id);
+        if(deleteUser > - 1){
+          this.selectedUserIDs.splice(deleteUser, 1);
+        }
+      }
     }
 
 
@@ -231,13 +243,15 @@ export default {
         );
       }
       return filteredUsers;
+    },
+    actionButtonDisabled() {
+      if(this.selectedUserIDs.length == 0) {
+        return true;
+      }
+      else {
+        return false 
+      }
     }
-    // actionButtonDisabled() {
-    //   if(this.selectedUserIDs == []) {
-    //     //disable buttons
-    //   }
-    //   else
-    // }
   }
 };
 </script>
