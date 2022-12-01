@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import TopicService from '../Services/TopicService';
 import Home from '../views/Home.vue';
 import Messages from '../views/Messages.vue';
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/:id',
     name: 'Messages',
     component: Messages
+  },
+  {
+    path: '/topics',
+    name: 'Topics',
+    component: TopicService
   }
 ];
 

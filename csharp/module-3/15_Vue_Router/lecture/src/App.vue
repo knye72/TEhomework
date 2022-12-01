@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    <router-view/>
+     <!-- this is the container that views will go in -->
+  </div>
 </template>
 
 <script>
