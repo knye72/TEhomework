@@ -9,5 +9,9 @@ const http = axios.create({
 
     getTopics() {
       return http.get('/topics'); 
+    },
+
+    getTopicID(id){
+        return http.get(`/topics/${id}`);
     }
-}
+  }

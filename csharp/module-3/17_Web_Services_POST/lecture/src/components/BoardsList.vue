@@ -75,7 +75,31 @@ export default {
       });
     },
     saveNewBoard() {
+      this.isLoading = true;
+      this.showAddBoard = false;
+      boardsService.addBoard(this.newBoard).then(() => {
+        this.retrieveBoards();
+        //the below resets the new board object
+        this.newBoard = {
+          title: '',
+          backgroundColor: this.randomBackgroundColor()
+        }
+      }).catch((error) => {
+        if(error.response) {
+          //if the error object has a response that means it made it to the server
+          this.errorMsg = 'Error adding a new board, response from server was ' + error.response.statusText + '.';
+        }
+        else if(error.request) {
+          //this means we never got a response so the problem was on the way to the server
+          this.errorMsg = 'Error adding a new board. Could not reach the server.';
+        }
+        else{
+          //no request, no response, something has gone terribly wrong
+          this.errorMsg = 'Error adding a new board, request could not be created.';
+        }
+        this.isLoading - false;
 
+      });
     },
     randomBackgroundColor() {
       return "#" + this.generateHexCode();

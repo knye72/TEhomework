@@ -68,7 +68,25 @@ export default {
         });
     },
     deleteBoard() {
-      
+      if(
+        confirm("Are you sure you want to delete this board?")
+      ){
+        boardsService.deleteBoard(this.$route.params.id).then(() => {
+          alert('Board successfully deleted.');
+          //users can't look at boards that no longer exist so push them back to home page.
+          this.$store.commit('DELETE_BOARD', this.$route.params.id); 
+          this.$router.push({ name: 'Home'});
+        }).catch((error) => {
+          if(error.response) {
+            this.errorMsg = 'Error deleting board. Response received was ' + error.response.statusText + '.';
+          }
+          else if(error.request) {
+            this.errorMsg = 'Error deleting board. Could not reach the server.';
+          }
+          else {
+            this.errorMsg = 'Ya got problems. Could not make request.'
+          }
+        })
     }
   },
   created() {
@@ -90,7 +108,7 @@ export default {
         card => card.status === "Completed"
       );
     }
-  }
+  }}
 };
 </script>
 

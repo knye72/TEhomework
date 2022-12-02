@@ -24,7 +24,15 @@ export default {
     };
   },
   methods: {
-    saveTopic() {}
+    saveTopic() {
+        topicService.addTopic(this.topic).then(() => {
+            this.$router.push( {name: 'Home'});
+            //reset new board object
+            }
+
+        );
+        
+    },
   }
 };
 </script>
